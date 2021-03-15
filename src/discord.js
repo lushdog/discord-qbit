@@ -39,7 +39,7 @@ client.on('message', async msg => {
     const result = await handleMessage(msg).catch(err => `error: ${JSON.stringify(err)}`)
     if (result) {
       if (Array.isArray(result)) {
-        result.forEach(text => msg.reply(text))
+        result.length ? result.forEach(text => msg.reply(text)) : msg.reply('no torrent found')
       } else {
         msg.reply(result)
       }
