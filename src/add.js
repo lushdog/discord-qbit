@@ -30,7 +30,7 @@ module.exports = async (argv) => {
   })
     .then(async result => {
       if (args['--part']) {
-        await sleep(5000)
+        await sleep(10000)
         const { data: list } = await request(server, '/api/v2/torrents/info', {
           sort: 'added_on'
         })
