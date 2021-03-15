@@ -1,13 +1,9 @@
-const serverConfig = require('../config.json')
-const { getClient } = require('./utils')
+const request = require('./request')
 
 module.exports = async (serverName, hashes, deleteFiles = true) => {
-  const client = await getClient(serverConfig[serverName])
-  return client.get('/api/v2/torrents/delete', {
-    params: {
-      hashes,
-      deleteFiles
-    }
+  return request(serverName, '/api/v2/torrents/delete', {
+    hashes,
+    deleteFiles
   })
     .then(result => {
       return result.status

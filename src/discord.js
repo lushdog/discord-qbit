@@ -1,9 +1,11 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const { getMessageEmbed, formatTorrent } = require('./utils.js')
+const { clientToken } = require('../config.json')
 const add = require('./add.js')
 const list = require('./list.js')
 const remove = require('./remove.js')
+const find = require('./find.js')
 
 const handleMessage = async ({ content }) => {
   if (content.startsWith('!add')) {
@@ -17,7 +19,8 @@ const handleMessage = async ({ content }) => {
     return embeds
   }
   if (content.startsWith('!find')) {
-    return true
+    const [_, server, name] = content.split(' ')
+    return await find(server, name)
   }
   if (content.startsWith('!remove')) {
     const [_, server, hashes, deleteFile] = content.split(' ')
@@ -43,7 +46,14 @@ client.on('message', async msg => {
     } else {
       msg.reply('Oops, 找不到该指令!')
     }
+  } else {
   }
 })
 
-client.login('ODE5NzYzODExNjQ0NDczMzQ0.YErWiw.H3ks7-sVslvbLiAmnssxxUXokGI')
+// client.on('messageReactionAdd', (msg) => {
+//   if (sg._emoji.name === '🍴') {
+    
+//   }
+// })
+
+client.login(clientToken)
