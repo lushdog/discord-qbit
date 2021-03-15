@@ -21,11 +21,9 @@ exports.getClient = async ({ QBIT_HOST, QBIT_PORT, QBIT_USERNAME, QBIT_PASSWORD 
 }
 
 exports.getMessageEmbed = async (Msg, desc) => {
-  console.log(Msg, desc)
   const embed = new discord.MessageEmbed()
   embed.setDescription(desc)
   Object.entries(Msg).forEach(([key, value]) => {
-    console.log(key, value)
     value !== '' && embed.addField(key, value, true)
   })
   return embed
@@ -41,7 +39,6 @@ exports.getMessageEmbed = (Msg, desc) => {
 }
 
 exports.formatTorrent = (torrent) => {
-  console.log(torrent)
   const {
     hash,
     name,
@@ -75,3 +72,22 @@ exports.formatTorrent = (torrent) => {
     添加时间: new Date(added_on * 1000)
   }
 }
+
+exports.getFilePriority = (fileList, targetSize) => {
+  const newFileList = fileList.map((item, id) => Object.assign(item, { id }))
+  newFileList.sort((a, b) => b.size - a.size)
+  let totalSize = 0
+  const dlList = []
+  const notDlList = []
+  for (const file of newFileList) {
+    if ((totalSize + file.size) <= targetSize) {
+      dlList.push(file.id)
+      totalSize += file.size
+    } else {
+      notDlList.push(file.id)
+    }
+  }
+  return { dlList, notDlList }
+}
+
+exports.sleep = time => new Promise((resolve) => setTimeout(resolve, time))
