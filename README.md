@@ -1,2 +1,2 @@
-# qbit-tools
-qbittorrent useful tools 
+# discord-qbit
+discord bot for qbittorrent
