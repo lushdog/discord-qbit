@@ -9,7 +9,7 @@ client.on('ready', () => {
 
 client.on('message', async msg => {
   if (msg.content.startsWith('!')) {
-    const result = await handleMessage(msg).catch(err => `error: ${JSON.stringify(err)}`)
+    const result = await handleMessage(msg).catch(err => `error: ${err.toString()}`)
     if (result) {
       if (Array.isArray(result)) {
         result.length ? result.forEach(text => msg.reply(text)) : msg.reply('no torrent found')

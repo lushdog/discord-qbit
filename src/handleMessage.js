@@ -15,8 +15,8 @@ const commands = {
   },
   '!find': async param => await find(param),
   '!remove': async param => {
-    const result = await remove(param).catch(err => JSON.stringify(err))
-    return result === 200 ? `删除${hashes}成功～` : `删除失败: ${err}`
+    const result = await remove(param).catch(err => err)
+    return result === 200 ? `删除成功～` : `删除失败`
   },
 }
 
