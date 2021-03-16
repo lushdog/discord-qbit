@@ -1,6 +1,6 @@
-const request = require('./request')
+const request = require('../request')
 const arg = require('arg')
-const { getFilePriority, sleep } = require('./utils')
+const { getFilePriority, sleep } = require('../utils')
 
 module.exports = async (argv) => {
   const args = arg({

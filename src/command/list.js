@@ -1,6 +1,6 @@
-const request = require('./request')
+const request = require('../request')
 
-module.exports = async (serverName) => {
+module.exports = async ([serverName]) => {
   return request(serverName, '/api/v2/torrents/info')
     .then(({ data }) => {
       return data

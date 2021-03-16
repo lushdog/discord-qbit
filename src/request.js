@@ -1,4 +1,3 @@
-const axios = require('axios')
 const serverConfig = require('../config.json')
 const { getClient } = require('./utils')
 const Axios = {}

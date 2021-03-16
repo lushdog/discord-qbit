@@ -1,6 +1,6 @@
-const request = require('./request')
+const request = require('../request')
 
-module.exports = async (serverName, hashes, deleteFiles = true) => {
+module.exports = async ([serverName, hashes, deleteFiles = true]) => {
   return request(serverName, '/api/v2/torrents/delete', {
     hashes,
     deleteFiles

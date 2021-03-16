@@ -1,6 +1,6 @@
-const request = require('./request')
+const request = require('../request')
 
-module.exports = async (serverName, name) => {
+module.exports = async ([serverName, name]) => {
   return request(serverName, '/api/v2/torrents/info')
     .then(({ data }) => {
       const result = data.find(item => item.name.includes(name))
