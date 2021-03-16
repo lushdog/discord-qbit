@@ -12,12 +12,13 @@ client.on('message', async msg => {
     const result = await handleMessage(msg).catch(err => `error: ${err.toString()}`)
     if (result) {
       if (Array.isArray(result)) {
+        console.log(result[0])
         result.length ? result.forEach(text => msg.reply(text)) : msg.reply('no torrent found')
       } else {
         msg.reply(result)
       }
     } else {
-      msg.reply('Oops, 找不到该指令!')
+      msg.reply('Oops, no cmmond!')
     }
   } else {
   }
