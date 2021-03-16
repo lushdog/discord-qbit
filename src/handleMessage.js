@@ -25,7 +25,7 @@ module.exports =  async ({ content }) => {
   const param = content.split(' ').slice(1)
   const cmd = content.split(' ')[0]
   if (commands[cmd]) {
-    commands[cmd](param)
+    return commands[cmd](param)
   } else {
     return `${cmd}: not found`
   }
