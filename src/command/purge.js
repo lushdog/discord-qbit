@@ -44,28 +44,22 @@ module.exports = async (argv) => {
     filter: args['-f'] || 'completed'
   })
     .then(({ data }) => {
-      try {
-        const deleteTorrents = data.filter(item => checkItem(item))
-        if (deleteTorrents.length) {
-          const hashes = deleteTorrents.map(item => item.hash).join('|')
-          const msg = `Deleting these torrents
-          ${deleteTorrents.map(item => item.name).join('\n')}
-          successfuly`
-          return request(args['-s'], '/api/v2/torrents/delete', {
-            hashes,
-            deleteFiles: true
+      const deleteTorrents = data.filter(item => checkItem(item))
+      if (deleteTorrents.length) {
+        const hashes = deleteTorrents.map(item => item.hash).join('|')
+        const msg = 
+        `Deleting these torrents ${deleteTorrents.map(item => item.name).join(',')} successfuly`
+        return request(args['-s'], '/api/v2/torrents/delete', {
+          hashes,
+          deleteFiles: true
+        })
+          .then(() => {
+            return msg
           })
-            .then(() => {
-              return msg
-            })
-            .catch(err => {
-              return err
-            })
-        }
-      } catch (error) {
-        console.log(error)
+          .catch(err => {
+            return err
+          })
       }
-      return 'success'
     })
     .catch(err => {
       return err
