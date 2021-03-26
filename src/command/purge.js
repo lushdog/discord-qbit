@@ -46,20 +46,19 @@ module.exports = async (argv) => {
     .then(({ data }) => {
       const deleteTorrents = data.filter(item => checkItem(item))
       if (deleteTorrents.length) {
-        return 'sss'
-        // const hashes = deleteTorrents.map(item => item.hash).join('|')
-        // const msg = 
-        // `Deleting these torrents ${deleteTorrents.map(item => item.name).join(',')} successfuly`
-        // return request(args['-s'], '/api/v2/torrents/delete', {
-        //   hashes,
-        //   deleteFiles: true
-        // })
-        //   .then(() => {
-        //     return msg
-        //   })
-        //   .catch(err => {
-        //     return err
-        //   })
+        const hashes = deleteTorrents.map(item => item.hash).join('|')
+        const msg = 
+        `Deleting these torrents ${deleteTorrents.map(item => item.name).join(',')} successfuly`
+        return request(args['-s'], '/api/v2/torrents/delete', {
+          hashes,
+          deleteFiles: true
+        })
+          .then(() => {
+            return msg
+          })
+          .catch(err => {
+            return err
+          })
       } else {
         return 'no macthed torrents'
       }
