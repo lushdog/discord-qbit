@@ -34,7 +34,7 @@ module.exports = async (argv) => {
     if (tag && !torrent.tags.includes(tag)) {
       result = false
     }
-    if (speed && (torrent.upspeed/1024/1024) >= Number(speed)) {
+    if (speed && (torrent.upspeed/1024/1024) <= Number(speed)) {
       result = false
     }
     return result
@@ -46,19 +46,20 @@ module.exports = async (argv) => {
     .then(({ data }) => {
       const deleteTorrents = data.filter(item => checkItem(item))
       if (deleteTorrents.length) {
-        const hashes = deleteTorrents.map(item => item.hash).join('|')
-        const msg = 
-        `Deleting these torrents ${deleteTorrents.map(item => item.name).join(',')} successfuly`
-        return request(args['-s'], '/api/v2/torrents/delete', {
-          hashes,
-          deleteFiles: true
-        })
-          .then(() => {
-            return msg
-          })
-          .catch(err => {
-            return err
-          })
+        return 'sss'
+        // const hashes = deleteTorrents.map(item => item.hash).join('|')
+        // const msg = 
+        // `Deleting these torrents ${deleteTorrents.map(item => item.name).join(',')} successfuly`
+        // return request(args['-s'], '/api/v2/torrents/delete', {
+        //   hashes,
+        //   deleteFiles: true
+        // })
+        //   .then(() => {
+        //     return msg
+        //   })
+        //   .catch(err => {
+        //     return err
+        //   })
       } else {
         return 'no macthed torrents'
       }
