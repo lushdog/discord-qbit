@@ -59,6 +59,8 @@ module.exports = async (argv) => {
           .catch(err => {
             return err
           })
+      } else {
+        return 'no macthed torrents'
       }
     })
     .catch(err => {
