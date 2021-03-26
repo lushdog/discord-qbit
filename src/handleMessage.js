@@ -4,6 +4,7 @@ const list = require('./command/list')
 const remove = require('./command/remove')
 const find = require('./command/find')
 const info = require('./command/info')
+const purge = require('./command/purge')
 
 const commands = {
   '!add': async param => {
@@ -19,7 +20,8 @@ const commands = {
     const result = await remove(param).catch(err => err)
     return result === 200 ? `delete torrent successfully～` : `fail to delete torrent`
   },
-  '!info': async param => await info(param)
+  '!info': async param => await info(param),
+  '!purge': async param => await purge(param)
 }
 
 module.exports =  async ({ content }) => {
