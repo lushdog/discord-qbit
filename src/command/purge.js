@@ -34,7 +34,7 @@ module.exports = async (argv) => {
     if (tag && !torrent.tags.includes(tag)) {
       result = false
     }
-    if (speed && (torrent.upspeed/1024/1024) <= Number(speed)) {
+    if (speed && (torrent.upspeed/1024/1024) >= Number(speed)) {
       result = false
     }
     return result
