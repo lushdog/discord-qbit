@@ -5,6 +5,7 @@ const remove = require('./command/remove')
 const find = require('./command/find')
 const info = require('./command/info')
 const purge = require('./command/purge')
+const stats = require('./command/stats')
 
 const commands = {
   '!add': async param => {
@@ -13,7 +14,7 @@ const commands = {
   },
   '!list': async param => {
     const listTorrents = await list(param)
-    return listTorrents.map(item => getMessageEmbed(formatTorrent(item), item.name))
+    return Array.isArray(listTorrents) ? listTorrents.map(item => getMessageEmbed(formatTorrent(item), item.name)) : listTorrents
   },
   '!find': async param => await find(param),
   '!remove': async param => {
@@ -21,7 +22,8 @@ const commands = {
     return result === 200 ? `delete torrent successfully～` : `fail to delete torrent`
   },
   '!info': async param => await info(param),
-  '!purge': async param => await purge(param)
+  '!purge': async param => await purge(param),
+  '!stats': async param => await stats(param),
 }
 
 module.exports =  async ({ content }) => {
