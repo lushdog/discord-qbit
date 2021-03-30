@@ -1,4 +1,5 @@
 const RUN_ENV = process.env.RUN_ENV
+const path = require('path')
 const configPath = path.join(__dirname, RUN_ENV === 'docker' ? '../../config/config.json' : '../config.json')
 const serverConfig = require(configPath)
 const { getClient } = require('./utils')
