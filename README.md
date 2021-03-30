@@ -11,7 +11,7 @@ See [Wiki](https://github.com/lushdog/discord-qbit/wiki)
 
 ## Usage
 
-
+After the discord bot is established, You can send a message on the discord channel or dm the bot.
 
 ## License
 
