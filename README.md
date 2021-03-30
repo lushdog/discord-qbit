@@ -5,7 +5,7 @@ A discord bot for qbittorrent
 
 This application is a discord bot, which can be used to easily manage all your qbittorrent clients by discord message.
 
-## Installtion
+## installation
 
 See [Wiki](https://github.com/lushdog/discord-qbit/wiki)
 
