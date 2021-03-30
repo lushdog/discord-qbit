@@ -23,7 +23,8 @@ All commands start with `!`.
 ##### Options
 | Flag | Type | Description |
 |------|------|-------------|
-|  -s, --server    |    String  | Which server to operate       |
+|  -s, --server    |    String  | Which server to operate|
+
 example: 
 ```
 !list -s serverA
@@ -43,6 +44,7 @@ example:
 |  `-c, --cookie`<br>*optional*   |    String  | cookie credentials|
 |  `-p, --paused`<br>*optional*   |    String  | don't start torrent|
 |  `--part`<br>*optional*   |    Number  | how much partial file wanted |
+
 example: 
 ```
 !add -s serverA -u http://download.php?id=1 -l 120000000 -p --part 10
@@ -59,6 +61,7 @@ example:
 |  `-t, --tracker`<br>*optional*   |    String  | filter tracker(keyword) |
 |  `-n, --name`<br>*optional*   |    String  |filter torrent name(keyword) |
 |  `-f, --filter`<br>*optional*   |    String  |filter torrent state, default is `completed`.  Allowed state filters: all, downloading, completed, paused, active, inactive, resumed, stalled, stalled_uploading, stalled_downloading |
+
 example: 
 ```
 !purge -s serverA -u 10 -t torrentleech -n BluRay
@@ -75,6 +78,7 @@ example:
 |  `-s, --server`   |    String  | Which server to operate|
 |  `-h, --hash`<br>*optional*   |    String  | torrent hash|
 |  `-p, --presrveFiles`<br>*optional*   |    Boolean  | If set to true, the downloaded data will also not be deleted.|
+
 example: 
 ```
 !remove -s serverA -h 04ffb985d5b3ee87fb301ffedd164c7e3650e006
@@ -89,6 +93,7 @@ example:
 |------|------|-------------|
 |  `-s, --server`   |    String  | Which server to operate|
 |  `-n, --name`*   |    String  | torrent name keyword|
+
 example: 
 ```
 !find -s serverA -n The.Walking.Dead.S10E10
@@ -101,6 +106,7 @@ example:
 | Flag | Type | Description |
 |------|------|-------------|
 |  `-s, --server`   |    String  | Which server to operate|
+
 example: 
 ```
 !info -s serverA
