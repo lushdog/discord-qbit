@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
-const { clientToken } = require('../config.json')
+const RUN_ENV = process.env.RUN_ENV
+const configPath = path.join(__dirname, RUN_ENV === 'docker' ? '../../config/config.json' : '../config.json')
+const { clientToken } = require(configPath)
 const handleMessage = require('./handleMessage')
 
 client.on('ready', () => {

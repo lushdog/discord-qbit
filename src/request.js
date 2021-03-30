@@ -1,4 +1,6 @@
-const serverConfig = require('../config.json')
+const RUN_ENV = process.env.RUN_ENV
+const configPath = path.join(__dirname, RUN_ENV === 'docker' ? '../../config/config.json' : '../config.json')
+const serverConfig = require(configPath)
 const { getClient } = require('./utils')
 const Axios = {}
 
