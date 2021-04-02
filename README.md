@@ -24,6 +24,7 @@ All commands start with `!`.
 | Flag | Type | Description |
 |------|------|-------------|
 |  -s, --server    |    String  | Which server to operate|
+|  -b, --brief    |    String  | return lists in one message |
 
 example: 
 ```

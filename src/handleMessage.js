@@ -6,6 +6,7 @@ const find = require('./command/find')
 const info = require('./command/info')
 const purge = require('./command/purge')
 const stats = require('./command/stats')
+const tag = require('./command/tag')
 
 const commands = {
   '!add': async param => {
@@ -24,6 +25,7 @@ const commands = {
   '!info': async param => await info(param),
   '!purge': async param => await purge(param),
   '!stats': async param => await stats(param),
+  '!tag': async param => await tag(param),
 }
 
 module.exports =  async ({ content }) => {
