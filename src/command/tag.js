@@ -1,5 +1,6 @@
 const request = require('../request')
 const arg = require('arg')
+const { sleep } = require('../utils')
 
 module.exports = async (argv) => {
   const args = arg({
@@ -10,25 +11,24 @@ module.exports = async (argv) => {
   })
   const serverName = args['-s']
   return request(serverName, '/api/v2/torrents/info')
-    .then(({ data }) => {
+    .then(async ({ data }) => {
       const hashes = []
       for (torrent of data) {
         if (!torrent.tracker) {
           hashes.push(torrent.hash)
         }
-        // const result = await request(serverName, '/api/v2/torrents/trackers', {
-        //   hash: torrent.hash
-        // })
-        // const tracker = result.data.find(item => item.url === torrent.tracker)
-        // if (tracker.status !== 2) {
-        //   if (/unregistered|registered|found|remove/.test(tracker.msg)) {
-        //     hashes.push(torrent.hash)
-        //   }
-        // }
+        const result = await request(serverName, '/api/v2/torrents/trackers', {
+          hash: torrent.hash
+        })
+        const tracker = result.data.find(item => item.url === torrent.tracker)
+        if (tracker.status !== 2) {
+          hashes.push(torrent.hash)
+        }
+        await sleep(10)
       }
       if (hashes.length) {
         const msg = 
-        `Add ${hashes.length} torrents tag successfuly`
+        `Found ${hashes.length} error torrents`
         return request(serverName, '/api/v2/torrents/addTags', {
           hashes: hashes.join('|'),
           tags: 'unregistered'
