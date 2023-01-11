@@ -11,5 +11,5 @@
     "QBIT_USERNAME": "admin",
     "QBIT_PASSWORD": "adminadmin"
   },
-  "discordToken": ""
+  "clientToken": ""
 }
